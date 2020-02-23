@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+	<bean id="mundo" class="com.openwebinars.spring.hellospring.Mundo">
+		<property name="saludo" value="¡Hola mundo!"></property>
+	</bean>
+	
+	<bean id="mundoConstructor" class="com.openwebinars.spring.hellospring.Mundo">
+		<constructor-arg name="saludo" value="¡Hola mundo constructor!"></constructor-arg>
+	</bean>
+	
+	<bean id="vehiculo" class="com.openwebinars.spring.hellospring.Vehiculo">
+		<property name="motor" ref="motorBean"></property>
+		<property name="nombre" value="Vechiulo propiedades"/>
+	</bean>
+	
+	<bean id="vehiculoConstructor" class="com.openwebinars.spring.hellospring.Vehiculo">
+		<constructor-arg name="motor" ref="motorBean"/>
+		<constructor-arg name="nombre" value="Vechiulo constructor"/>
+	</bean>
+	
+	<bean id="motorBean" class="com.openwebinars.spring.hellospring.Motor">
+		<constructor-arg name="bujia" ref="bujiaId"/>
+	</bean>
+	
+	<bean id="bujiaId" class="com.openwebinars.spring.hellospring.Bujia">
+		<constructor-arg name="precio" value="100"/>
+	</bean>
+	
+	<bean id="vehiculoAnidado" class="com.openwebinars.spring.hellospring.Vehiculo">
+		<property name="motor">
+			<bean id="motorBean" class="com.openwebinars.spring.hellospring.Motor">
+				<property name="bujia">
+					<bean id="bujiaId" class="com.openwebinars.spring.hellospring.Bujia">
+						<constructor-arg name="precio" value="100"/>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<property name="nombre" value="Vehiculo anidado"/>
+	</bean>
+	
+	<bean id="motorListaBujias" class="com.openwebinars.spring.hellospring.Motor">
+		<property name="listaBujias">
+			<list>
+				<ref bean="bujiaId"/>
+				<bean class="com.openwebinars.spring.hellospring.Bujia">
+					<constructor-arg name="precio" value="200"/>
+				</bean>
+			</list>
+		</property>
+		<property name="bujia" ref="bujiaId"></property>
+	</bean>
+	
+	<bean id="motorMapaBujias" class="com.openwebinars.spring.hellospring.Motor">
+		<property name="mapaBujias">
+			<map>
+				<entry key="key1">
+					<ref bean="bujiaId"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+		
+	
+	<bean id="motorSetBujias" class="com.openwebinars.spring.hellospring.Motor">
+		<property name="setBujias">
+			<set>
+				<ref bean="bujiaId"/>
+				<bean id="bujiaId" class="com.openwebinars.spring.hellospring.Bujia">
+					<constructor-arg name="precio" value="300"/>
+				</bean>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="motorProperties" class="com.openwebinars.spring.hellospring.Motor" lazy-init="true">
+		<property name="properties">
+			<props>
+				<prop key="prop1">Valor propiedad 1</prop>
+				<prop key="prop2">Valor propiedad 2</prop>
+			</props>
+		</property>
+	</bean>
+		
+	
+	
+
+</beans>
