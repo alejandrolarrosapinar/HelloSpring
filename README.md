@@ -15,3 +15,4 @@ Si ponemos sobre esta linea "xsi:schemaLocation="http://www.springframework.org/
 	Ahora creamos el beans.xml (como el applicationContext.xml de toda la vida)
 	Botón derecho y creamos spring bean configuration file
 	
+Modificamos
