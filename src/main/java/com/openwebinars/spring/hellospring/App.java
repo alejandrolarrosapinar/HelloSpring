@@ -43,6 +43,25 @@ public class App
         /*Motor motorProperties = (Motor) appContext.getBean("motorProperties");
         System.out.println(motorProperties.getProperties().get("prop1"));*/
         
+        //Autowired
+        Motor motorAutowired = (Motor)  appContext.getBean("motorAutowired");
+        System.out.println(motorAutowired);
+        
+        //Ambito 
+        Mundo mundoSingleton = (Mundo)  appContext.getBean("mundoSingleton");
+        Mundo mundoSingleton2 = (Mundo)  appContext.getBean("mundoSingleton");
+        System.out.println("mundoSingleton->" +mundoSingleton);
+        System.out.println("mundoSingleton2->" +mundoSingleton2);
+        
+        //Ciclo de vida de bean
+        Saludo saludo= (Saludo)  appContext.getBean("saludoBean");
+        System.out.println("Saludo vale:"+saludo);
+        
+        Saludo saludoBeanAnotaciones= (Saludo)  appContext.getBean("saludoBeanAnotaciones");
+        System.out.println("SaludoBeanAnotaciones vale:"+saludoBeanAnotaciones );
+        
+        
+        
         //Cuando finalice el flujo de la aplicacion, cerramos el contenedor
         ((ConfigurableApplicationContext) appContext).close();
     }

@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
 
+	<!-- beans -->
 	<bean id="mundo" class="com.openwebinars.spring.hellospring.Mundo">
 		<property name="saludo" value="¡Hola mundo!"></property>
 	</bean>
@@ -83,6 +84,31 @@
 				<prop key="prop2">Valor propiedad 2</prop>
 			</props>
 		</property>
+	</bean>
+	<!-- Autowired -->
+	<bean id="motorAutowired" class="com.openwebinars.spring.hellospring.Motor" autowire="byName">
+		
+	</bean>
+	
+	<bean id="bujia" class="com.openwebinars.spring.hellospring.Bujia">
+		<property name="precio" value="1000000"></property>
+	</bean>
+	
+	<!-- Ambitos -->
+	<bean id="mundoSingleton" class="com.openwebinars.spring.hellospring.Mundo" scope="singleton">
+		<property name="saludo" value="Mundo singleton"></property>
+	</bean>
+	
+	<!-- Ciclo de vida -->
+	<bean id="saludoBean" class="com.openwebinars.spring.hellospring.Saludo" init-method="inicar" destroy-method="destruir">
+		<property name="saludo" value="Este es el ciclo de vida"></property>
+	</bean>
+	
+	<!-- Con esta clase, se mira en todos los beans de este fichero y mira los métodos que tengan el postcontruct y el predestroy-->
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+	
+	<bean id="saludoBeanAnotaciones" class="com.openwebinars.spring.hellospring.Saludo">
+		<property name="saludo" value="Este es el ciclo de vida"></property>
 	</bean>
 		
 	
